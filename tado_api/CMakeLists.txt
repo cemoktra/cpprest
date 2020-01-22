@@ -5,12 +5,7 @@ project(tado_api VERSION 0.1)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-
 PROTOBUF_GENERATE_CPP(PROTO_SRCS PROTO_HDRS tado.proto)
-
-message ("PROTO_SRCS = ${PROTO_SRCS}")
-message ("PROTO_HDRS = ${PROTO_HDRS}")
-
 
 set (TADO_SOURCES 
     source/tado_api.cpp
