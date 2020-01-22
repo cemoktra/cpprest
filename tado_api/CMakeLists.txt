@@ -13,7 +13,6 @@ set (TADO_SOURCES
 
 set (TADO_HEADERS
     include/tado_api.hpp
-    include/tado_data.hpp
     include/tado_exceptions.hpp
 )
 

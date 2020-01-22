@@ -8,7 +8,6 @@
 #include "get_request.hpp"
 
 #include "tado.pb.h"
-#include "tado_data.hpp"
 #include "tado_exceptions.hpp"
 
 
