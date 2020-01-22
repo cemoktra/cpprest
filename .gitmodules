@@ -1,0 +1,3 @@
+[submodule "argcpp17"]
+	path = argcpp17
+	url = https://github.com/cemoktra/argcpp17.git

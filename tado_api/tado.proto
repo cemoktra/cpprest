@@ -1,0 +1,265 @@
+syntax = "proto2";
+
+message OAUTHTOKEN {
+    required string access_token = 1;
+    required string token_type = 2;
+    required string refresh_token = 3;
+    required double expires_in = 4;
+    required string scope = 5;
+    required string jti = 6;
+}
+
+message LOGINERROR {
+    required string error = 1;
+    required string error_description = 2;
+}
+  
+message REQUEST_ERRORS {
+    message REQUEST_ERROR {
+        required string code = 1;
+        required string title = 2;
+    }
+
+    repeated REQUEST_ERROR errors = 1;
+}
+  
+  
+message ME {
+  required string email = 1;
+
+  message HOMES {
+    required double id = 1;
+    required string name = 2;
+  }
+
+  repeated HOMES homes = 2;
+  required string id = 3;
+  required string locale = 4;
+
+  message MOBILEDEVICES {
+
+    message DEVICEMETADATA {
+      required string locale = 1;
+      required string model = 2;
+      required string osVersion = 3;
+      required string platform = 4;
+    }
+
+    required DEVICEMETADATA deviceMetadata = 1;
+    required double id = 2;
+
+    message LOCATION {
+      required bool atHome = 1;
+
+      message BEARINGFROMHOME {
+        required double degrees = 1;
+        required double radians = 2;
+      }
+
+      required BEARINGFROMHOME bearingFromHome = 2;
+      required double relativeDistanceFromHomeFence = 3;
+      required bool stale = 4;
+    }
+
+    required LOCATION location = 3;
+    required string name = 4;
+
+    message SETTINGS {
+      required bool geoTrackingEnabled = 1;
+    }
+
+    required SETTINGS settings = 5;
+  }
+
+  repeated MOBILEDEVICES mobileDevices = 5;
+  required string name = 6;
+  required string username = 7;
+}
+
+message HOME {
+    required double id = 1;
+    required string name = 2;
+    required string dateTimeZone = 3;
+    required string dateCreated = 4;
+    required string temperatureUnit = 5;
+    optional string partner = 6;
+    required bool simpleSmartScheduleEnabled = 7;
+    required double awayRadiusInMeters = 8;
+
+    message SKILLS {
+    }
+
+    repeated SKILLS skills = 9;
+    required bool christmasModeEnabled = 10;
+    required bool showAutoAssistReminders = 11;
+  
+    message CONTACTDETAILS {
+      required string name = 1;
+      required string email = 2;
+      required string phone = 3;
+    }
+  
+    required CONTACTDETAILS contactDetails = 12;
+  
+    message ADDRESS {
+      required string addressLine1 = 1;
+      optional string addressLine2 = 2;
+      required string zipCode = 3;
+      required string city = 4;
+      optional string state = 5;
+      required string country = 6;
+    }
+  
+    required ADDRESS address = 13;
+  
+    message GEOLOCATION {
+      required double latitude = 1;
+      required double longitude = 2;
+    }
+  
+    required GEOLOCATION geolocation = 14;
+    required bool consentGrantSkippable = 15;
+  }
+  
+
+  message ZONES {
+    message ZONE {
+      required double id = 1;
+      required string name = 2;
+      required string type = 3;
+      required string dateCreated = 4;
+      repeated string deviceTypes = 5;
+  
+      message DEVICES {
+        required string deviceType = 1;
+        required string serialNo = 2;
+        required string shortSerialNo = 3;
+        required string currentFwVersion = 4;
+  
+        message CONNECTIONSTATE {
+          required bool value = 1;
+          required string timestamp = 2;
+        }
+  
+        required CONNECTIONSTATE connectionState = 5;
+  
+        message CHARACTERISTICS {
+          repeated string capabilities = 1;
+        }
+  
+        required CHARACTERISTICS characteristics = 6;
+  
+        message MOUNTINGSTATE {
+          required string value = 1;
+          required string timestamp = 2;
+        }
+  
+        required MOUNTINGSTATE mountingState = 7;
+        required string batteryState = 8;
+        repeated string duties = 9;
+      }
+  
+      repeated DEVICES devices = 6;
+      required bool reportAvailable = 7;
+      required bool supportsDazzle = 8;
+      required bool dazzleEnabled = 9;
+  
+      message DAZZLEMODE {
+        required bool supported = 1;
+        required bool enabled = 2;
+      }
+  
+      required DAZZLEMODE dazzleMode = 10;
+  
+      message OPENWINDOWDETECTION {
+        required bool supported = 1;
+        required bool enabled = 2;
+        required double timeoutInSeconds = 3;
+      }
+  
+      required OPENWINDOWDETECTION openWindowDetection = 11;
+    }
+
+    repeated ZONE zones = 1;
+  }
+  
+
+  message ZONE_STATE {
+    required string tadoMode = 1;
+    required bool geolocationOverride = 2;
+    optional string geolocationOverrideDisableTime = 3;
+    optional string preparation = 4;
+  
+    message SETTING {
+      required string type = 1;
+      required string power = 2;
+  
+      message TEMPERATURE {
+        required double celsius = 1;
+        required double fahrenheit = 2;
+      }
+  
+      optional TEMPERATURE temperature = 3;
+    }
+  
+    required SETTING setting = 5;
+    optional string overlayType = 6;
+    optional string overlay = 7;  
+    optional string openWindow = 8;
+    optional string nextScheduleChange = 9;
+  
+    message NEXTTIMEBLOCK {
+      required string start = 1;
+    }
+  
+    required NEXTTIMEBLOCK nextTimeBlock = 10;
+  
+    message LINK {
+      required string state = 1;
+    }
+  
+    required LINK link = 11;
+  
+    message ACTIVITYDATAPOINTS {
+  
+      message HEATINGPOWER {
+        required string type = 1;
+        required double percentage = 2;
+        required string timestamp = 3;
+      }
+  
+      required HEATINGPOWER heatingPower = 1;
+    }
+  
+    required ACTIVITYDATAPOINTS activityDataPoints = 12;
+  
+    message SENSORDATAPOINTS {
+  
+      message INSIDETEMPERATURE {
+        required double celsius = 1;
+        required double fahrenheit = 2;
+        required string timestamp = 3;
+        required string type = 4;
+  
+        message PRECISION {
+          required double celsius = 1;
+          required double fahrenheit = 2;
+        }
+  
+        required PRECISION precision = 5;
+      }
+  
+      required INSIDETEMPERATURE insideTemperature = 1;
+  
+      message HUMIDITY {
+        required string type = 1;
+        required double percentage = 2;
+        required string timestamp = 3;
+      }
+  
+      required HUMIDITY humidity = 2;
+    }
+  
+    required SENSORDATAPOINTS sensorDataPoints = 13;
+  }
+  
