@@ -11,6 +11,8 @@ set (REST_HEADERS
     post_request.hpp
     request.hpp
     request_solver.hpp
+    rest_api.hpp
+    rest_exceptions.hpp
 )
 
 add_library(rest_api INTERFACE)

@@ -1,0 +1,153 @@
+syntax = "proto3";
+
+message GITHUB_USER {
+  string login = 1;
+  double id = 2;
+  string node_id = 3;
+  string avatar_url = 4;
+  string gravatar_id = 5;
+  string url = 6;
+  string html_url = 7;
+  string followers_url = 8;
+  string following_url = 9;
+  string gists_url = 10;
+  string starred_url = 11;
+  string subscriptions_url = 12;
+  string organizations_url = 13;
+  string repos_url = 14;
+  string events_url = 15;
+  string received_events_url = 16;
+  string type = 17;
+  bool site_admin = 18;
+  string name = 19;
+  string company = 20;
+  string blog = 21;
+  string location = 22;
+  string email = 23;
+  bool hireable = 24;
+  string bio = 25;
+  double public_repos = 26;
+  double public_gists = 27;
+  double followers = 28;
+  double following = 29;
+  string created_at = 30;
+  string updated_at = 31;
+}
+  
+message REPOSITORIES {
+  message REPOSITORY {
+    double id = 1;
+    string node_id = 2;
+    string name = 3;
+    string full_name = 4;
+    bool private = 5;
+  
+    message OWNER {
+      string login = 1;
+      double id = 2;
+      string node_id = 3;
+      string avatar_url = 4;
+      string gravatar_id = 5;
+      string url = 6;
+      string html_url = 7;
+      string followers_url = 8;
+      string following_url = 9;
+      string gists_url = 10;
+      string starred_url = 11;
+      string subscriptions_url = 12;
+      string organizations_url = 13;
+      string repos_url = 14;
+      string events_url = 15;
+      string received_events_url = 16;
+      string type = 17;
+      bool site_admin = 18;
+    }
+  
+    OWNER owner = 6;
+    string html_url = 7;
+    string description = 8;
+    bool fork = 9;
+    string url = 10;
+    string forks_url = 11;
+    string keys_url = 12;
+    string collaborators_url = 13;
+    string teams_url = 14;
+    string hooks_url = 15;
+    string issue_events_url = 16;
+    string events_url = 17;
+    string assignees_url = 18;
+    string branches_url = 19;
+    string tags_url = 20;
+    string blobs_url = 21;
+    string git_tags_url = 22;
+    string git_refs_url = 23;
+    string trees_url = 24;
+    string statuses_url = 25;
+    string languages_url = 26;
+    string stargazers_url = 27;
+    string contributors_url = 28;
+    string subscribers_url = 29;
+    string subscription_url = 30;
+    string commits_url = 31;
+    string git_commits_url = 32;
+    string comments_url = 33;
+    string issue_comment_url = 34;
+    string contents_url = 35;
+    string compare_url = 36;
+    string merges_url = 37;
+    string archive_url = 38;
+    string downloads_url = 39;
+    string issues_url = 40;
+    string pulls_url = 41;
+    string milestones_url = 42;
+    string notifications_url = 43;
+    string labels_url = 44;
+    string releases_url = 45;
+    string deployments_url = 46;
+    string created_at = 47;
+    string updated_at = 48;
+    string pushed_at = 49;
+    string git_url = 50;
+    string ssh_url = 51;
+    string clone_url = 52;
+    string svn_url = 53;
+    string homepage = 54;
+    double size = 55;
+    double stargazers_count = 56;
+    double watchers_count = 57;
+    string language = 58;
+    bool has_issues = 59;
+    bool has_projects = 60;
+    bool has_downloads = 61;
+    bool has_wiki = 62;
+    bool has_pages = 63;
+    double forks_count = 64;
+    string mirror_url = 65;
+    bool archived = 66;
+    bool disabled = 67;
+    double open_issues_count = 68;
+    message LICENSE {
+      string key = 1;
+      string name = 2;
+      string spdx_id = 3;
+      string url = 4;
+      string node_id = 5;
+    }
+  
+    LICENSE license = 69;
+    double forks = 70;
+    double open_issues = 71;
+    double watchers = 72;
+    string default_branch = 73;
+  
+    message PERMISSIONS {
+      bool admin = 1;
+      bool push = 2;
+      bool pull = 3;
+    }
+  
+    PERMISSIONS permissions = 74;
+  }
+
+  repeated REPOSITORY repositories = 1;
+}
