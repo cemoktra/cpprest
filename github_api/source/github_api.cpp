@@ -6,7 +6,7 @@ namespace github {
 
 api api::login(const std::string& token) {
     api _api;
-    _api.set_user_agent("cpp_rest_api");
+    _api.set_user_agent("cpprest_github_api");
     _api.set_auth_header("token " + token);
     return std::move(_api);
 }

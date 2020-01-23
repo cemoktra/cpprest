@@ -15,7 +15,7 @@ namespace rest_api {
 
 class api_base {
 public:
-    api_base() : m_userAgent("cpp_rest_api") {}
+    api_base() : m_userAgent("cpprest") {}
     api_base(const api_base& rhs)
     {
         m_authHeader = rhs.m_authHeader;
