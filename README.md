@@ -1,4 +1,4 @@
-# cpp_rest_api
+# cpp_rest
 collection of rest apis for cpp
 
 # rest_api
