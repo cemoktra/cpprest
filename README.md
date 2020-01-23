@@ -1,5 +1,5 @@
 # cpprest
-cpprest is a simple rest client using libcurl to make the calls. It makes use of `std::future` for asynchronous calls. Currently there are two incomplete API implementations in this project. 
+cpprest is a simple rest client using libcurl to make the calls. It makes use of `std::async` and `std::future` for asynchronous calls. Currently there are two incomplete API implementations in this project. 
 
 ## rest_api (not complete)
 Basic classes for making rest calls. Current implementation includes what is necessary for both partial API implementations.
