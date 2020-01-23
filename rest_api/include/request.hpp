@@ -11,6 +11,8 @@
 namespace rest_api {
 
 class request {
+    friend class request_resolver;
+
 public:
     request(const std::string& url)
         : m_url(url)
@@ -19,6 +21,10 @@ public:
 
     std::string_view url() { return m_url; }
     
+    const std::string& response_link() 
+    { 
+        return m_responseLink;
+    }
 
     void set_header(const std::string& name, const std::string& data)
     {
@@ -43,6 +49,7 @@ public:
 private:
     std::string m_url;
     std::string m_userAgent;
+    std::string m_responseLink;
     std::map<std::string, std::string> m_header;
 };
 
