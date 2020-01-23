@@ -1,0 +1,36 @@
+syntax = "proto2";
+
+message AUTHENTICATED_USER {
+    required string login = 1;
+    required double id = 2;
+    required string node_id = 3;
+    required string avatar_url = 4;
+    required string gravatar_id = 5;
+    required string url = 6;
+    required string html_url = 7;
+    required string followers_url = 8;
+    required string following_url = 9;
+    required string gists_url = 10;
+    required string starred_url = 11;
+    required string subscriptions_url = 12;
+    required string organizations_url = 13;
+    required string repos_url = 14;
+    required string events_url = 15;
+    required string received_events_url = 16;
+    required string type = 17;
+    required bool site_admin = 18;
+    required string name = 19;
+    optional string company = 20;
+    required string blog = 21;
+    required string location = 22;
+    optional string email = 23;
+    optional bool hireable = 24;
+    optional string bio = 25;
+    required double public_repos = 26;
+    required double public_gists = 27;
+    required double followers = 28;
+    required double following = 29;
+    required string created_at = 30;
+    required string updated_at = 31;
+  }
+  

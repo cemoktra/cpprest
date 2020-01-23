@@ -206,7 +206,25 @@ message HOME {
     optional string overlayType = 6;
     optional string overlay = 7;  
     optional string openWindow = 8;
-    optional string nextScheduleChange = 9;
+
+    message NEXTSCHEDULECHANGE {
+      required string start = 1;
+  
+      message SETTING {
+        required string type = 1;
+        required string power = 2;
+  
+        message TEMPERATURE {
+          required double celsius = 1;
+          required double fahrenheit = 2;
+        }
+  
+        required TEMPERATURE temperature = 3;
+      }
+  
+      required SETTING setting = 2;
+    }
+    optional NEXTSCHEDULECHANGE nextScheduleChange = 9;
   
     message NEXTTIMEBLOCK {
       required string start = 1;
