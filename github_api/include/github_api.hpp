@@ -61,7 +61,7 @@ public:
     api(const api& rhs) = default;
     ~api() = default;
 
-    static api login(const std::string& token);
+    static std::shared_ptr<api> login(const std::string& token);
 
     std::future<GITHUB_USER> authenticated_user();
     std::future<GITHUB_USER> user(const std::string& username);

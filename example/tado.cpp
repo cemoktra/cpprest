@@ -20,30 +20,25 @@ int main(int argc, char **args)
     auto username = p.get_value<std::string>({"username"}).value();
     auto password = p.get_value<std::string>({"password"}).value();
 
-    tado::api tado = tado::api::login(username, password);
+    auto tado = tado::api::login(username, password);
 
-    auto me_future = tado.me();
-    me_future.wait();
+    auto me_future = tado->me();
     auto me = me_future.get();
 
     for (auto homeid : me.homes())
     {
-        auto home_future = tado.home(homeid.id());
-        auto zones_future = tado.zones(homeid.id());
+        auto home_future = tado->home(homeid.id());
+        auto zones_future = tado->zones(homeid.id());
 
-        home_future.wait();        
         auto home = home_future.get();
         std::cout << home.name() << ":" << std::endl;
-
-        zones_future.wait();        
         auto zones = zones_future.get();        
 
-       for (auto zone : zones.zones()) {
-            auto zone_state_future = tado.zone_state(home.id(), zone.id());
-            zone_state_future.wait();
+        for (auto zone : zones.zones()) {
+            auto zone_state_future = tado->zone_state(home.id(), zone.id());
             auto zone_state = zone_state_future.get();
             std::cout << "  " << zone.name() << " - " << zone_state.sensordatapoints().insidetemperature().celsius() << "°" << " - " << zone_state.sensordatapoints().humidity().percentage() << "%" << std::endl;
-       }
+        }
     }
 
             

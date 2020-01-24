@@ -9,14 +9,14 @@ api::api(const api& rhs) : rest_api::api_base(rhs)
     m_auth = rhs.m_auth;
 }
 
-api api::login(const OAUTHTOKEN& token) {
-    api _api;
-    _api.m_auth = token;
-    _api.set_auth_header("Bearer " + _api.m_auth.access_token());
-    return std::move(_api);
+std::shared_ptr<api> api::login(const OAUTHTOKEN& token) {
+    auto _api = new api();
+    _api->m_auth = token;
+    _api->set_auth_header("Bearer " + _api->m_auth.access_token());
+    return std::shared_ptr<api>(_api);
 }
 
-api api::login(const std::string& username, const std::string& password) {
+std::shared_ptr<api> api::login(const std::string& username, const std::string& password) {
     auto login_request = std::make_shared<rest_api::post_request> ("https://auth.tado.com/oauth/token");
     login_request->add_post_data("client_id", "tado-web-app");
     login_request->add_post_data("client_secret", "wZaRN7rpjn3FoNyF5IFuxg9uMzYJcvOoQ8QWiIqS3hfk6gLhVlG57j5YNoZL2Rtc");
@@ -29,13 +29,12 @@ api api::login(const std::string& username, const std::string& password) {
     {        
         rest_api::request_resolver resolver;
         auto future_response = resolver.resolve(login_request);
-        future_response.wait();
         response = future_response.get().second;
     }
 
     OAUTHTOKEN token;
     if (google::protobuf::util::JsonStringToMessage(response, &token).ok())
-        return std::move(api::login(token));        
+        return api::login(token);
     else {
         LOGINERROR error;
         if (google::protobuf::util::JsonStringToMessage(response, &error).ok())
@@ -55,7 +54,6 @@ void api::refresh_token()
     refresh_request->add_post_data("refresh_token", m_auth.refresh_token());
 
     auto refreshed_token_f = post<OAUTHTOKEN>(refresh_request);
-    refreshed_token_f.wait();
     m_auth = refreshed_token_f.get();
     set_auth_header("Bearer " + m_auth.access_token());
 }

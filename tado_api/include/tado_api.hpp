@@ -17,8 +17,8 @@ public:
     api(const api& rhs);
     ~api() = default;
 
-    static api login(const OAUTHTOKEN& token);
-    static api login(const std::string& username, const std::string& password);
+    static std::shared_ptr<api> login(const OAUTHTOKEN& token);
+    static std::shared_ptr<api> login(const std::string& username, const std::string& password);
 
     std::future<ME> me();
     std::future<HOME> home(int homeid);
@@ -33,14 +33,12 @@ private:
     {
         return std::async(std::launch::async, [this, req]() {
             auto res_f = get<T>(req);
-            res_f.wait();
             try {
                 return res_f.get();
             } catch (rest_api::http_exception http_ex) {
                 if (http_ex.http_code() != 401)
                     throw(http_ex);
                 res_f = tado_refresh_and_get<T>(req);
-                res_f.wait();
                 return res_f.get();
             }
         });
@@ -52,7 +50,6 @@ private:
         return std::async(std::launch::async, [this, req]() {
             refresh_token();
             auto res_f = get<T>(req);
-            res_f.wait();
             return res_f.get();
         });
     }

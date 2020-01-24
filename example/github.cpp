@@ -23,11 +23,8 @@ int main(int argc, char **args)
 
     auto github = github::api::login(token);
 
-    auto user_f = github.authenticated_user();
-    auto user_repos_f = github.authenticated_user_repos();
-    user_f.wait();
-    user_repos_f.wait();
-
+    auto user_f = github->authenticated_user();
+    auto user_repos_f = github->authenticated_user_repos();
     auto user = user_f.get();
     auto user_repos = user_repos_f.get();
     for (auto repo : user_repos.repositories())

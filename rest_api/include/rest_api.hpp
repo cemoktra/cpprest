@@ -79,7 +79,6 @@ protected:
         req->set_header("Authorization", m_authHeader);
         req->set_user_agent(m_userAgent);
         auto response_f = m_resolver.resolve(req);
-        response_f.wait();
         auto [httpstatus, response] = response_f.get();
 
         if (httpstatus == 200)
