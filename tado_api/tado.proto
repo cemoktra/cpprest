@@ -28,7 +28,7 @@ message ME {
   required string email = 1;
 
   message HOME {
-    required double id = 1;
+    required int64 id = 1;
     required string name = 2;
   }
 
