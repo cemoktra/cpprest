@@ -27,12 +27,12 @@ message REQUEST_ERRORS {
 message ME {
   required string email = 1;
 
-  message HOMES {
+  message HOME {
     required double id = 1;
     required string name = 2;
   }
 
-  repeated HOMES homes = 2;
+  repeated HOME homes = 2;
   required string id = 3;
   required string locale = 4;
 
