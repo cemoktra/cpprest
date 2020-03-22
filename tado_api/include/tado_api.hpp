@@ -37,7 +37,7 @@ private:
                 return res_f.get();
             } catch (rest_api::http_exception http_ex) {
                 if (http_ex.http_code() != 401)
-                    throw(http_ex);
+                    throw;
                 res_f = tado_refresh_and_get<T>(req);
                 return res_f.get();
             }
